@@ -1,0 +1,7 @@
+.flaskenv
+venv/
+app.db
+TLDR
+/app/__pycache__
+/migrations
+__pycache__/

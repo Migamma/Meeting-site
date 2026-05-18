@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Новое Мероприятие</h1>
+  <form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+     <div class="mb-3">
+    <p>
+      {{ form.message.label }}<br>
+      {{ form.message(size=64) }}
+        {% for error in form.message.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+    </p>
+    </div>
+     <div class="mb-3">
+    <p>
+      {{ form.scheduletime.label }}<br>
+      {{ form.scheduletime }}
+    </p>
+    <p>
+      {{ form.duration.label }}<br>
+      {{ form.duration}}
+    </p>
+    </div>
+     <div class="mb-3">
+    <p>{{ form.submit() }}</p>
+    </div>
+  </form>
+{% endblock %}

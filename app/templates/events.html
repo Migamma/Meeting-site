@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1> Мероприятия для {{ user.username }}</h1>
+    <hr>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Когда</th>
+      <th scope="col">Продолжительность</th>
+      <th scope="col">Teма</th>
+    </tr>
+  </thead>
+
+    {% for event in events %}
+    <tr>
+    <td> 
+    {{ event.timeSchedule}} 
+    </td> 
+    <td> 
+    {{ event.duration }} 
+    </td> 
+    <td> 
+    {{ event.message }} 
+    </td> 
+     <td>
+      <form action="{{ url_for('deletevent', id=event.id )}}" method="POST">
+          <button type="submit" class="btn btn-dager">УДАЛИТЬ</button>
+      </form>
+    </td>
+    </tr>
+    {% endfor %}
+    </table>
+
+   <hr>
+   <a class="btn btn-primary" href="{{url_for('newevent') }}" role="button">Добавить мероприятие</a>
+{% endblock %}
