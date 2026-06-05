@@ -23,8 +23,6 @@ def login():
   form = LoginForm()
   if form.validate_on_submit():
     user=db.session.scalar(sa.select(User).where(User.username == form.username.data))
-    # flash('Login requested for user {}, remember_me={}'.format(
-    #   form.username.data, form.remember_me.data))
     if user is None or not user.check_password(form.password.data):
       flash('Не правильный логин или пароль')
       return redirect(url_for('login'))
@@ -41,10 +39,6 @@ def logout():
 @login_required
 def events(username):
     user = db.first_or_404(sa.select(User).where(User.username == username))
-    # events = [
-        # {'owner': user, 'message': 'Event 1', 'duration':2, "timeschedule": datetime.datetime.now()  },
-        # {'owner': user, 'message': 'Event 2', 'duration': 1, "timeschedule": datetime.datetime.now() }
-    # ]
     query=current_user.events.select()
 
     events=db.session.scalars(query).all()
